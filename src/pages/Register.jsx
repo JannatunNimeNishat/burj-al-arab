@@ -12,7 +12,7 @@ const Register = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+       
         //validation
         setSuccess('');
         setError('');
@@ -34,7 +34,7 @@ const Register = () => {
             setSuccess('successfully signed Up')
         })
         .catch(error=>{
-            setError(error)
+            setError(error.message)
         })
 
     }
