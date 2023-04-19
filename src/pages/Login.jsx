@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
-
+import { FaGoogle } from "react-icons/fa";
 const Login = () => {
-    const { signIn } = useContext(AuthContext)
+    const { signIn,googleSignIn } = useContext(AuthContext)
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
+
+    //login with email password
     const handleLogin = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -14,15 +16,30 @@ const Login = () => {
         //
         setSuccess('')
         setError('')
-        signIn(email,password)
-        .then(result =>{
-            setSuccess('successfully login')
-        })
-        .catch(error=>{
-            setError(error.message)
-        })
+        signIn(email, password)
+            .then(result => {
+                setSuccess('successfully login')
+            })
+            .catch(error => {
+                setError(error.message)
+            })
 
     }
+
+    //login with google
+    const handleGoogleLogin = ()=>{
+        googleSignIn()
+        .then(result =>{
+            setSuccess('successfully login with google')
+            console.log(result.user);
+        })
+        .catch(error =>{
+            setError(error.message);
+
+        })
+    }
+
+
     return (
         <div className='my-container'>
             <div className="hero mt-5 mb-3 bg-base-200">
@@ -76,6 +93,13 @@ const Login = () => {
                     </form>
 
                 </div>
+                {/*  */}
+            </div>
+            <div className='mb-3'>
+                <button onClick={handleGoogleLogin} className="btn gap-2 ">
+                    <FaGoogle />
+                    Login with Google
+                </button>
             </div>
         </div>
     );
