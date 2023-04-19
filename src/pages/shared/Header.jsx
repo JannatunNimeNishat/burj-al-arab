@@ -21,8 +21,8 @@ const Header = () => {
                     <Link to='/'><h3>BurjALArab</h3></Link>
                     <div className='flex gap-5 '>
                         <NavLink to='/' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Home</NavLink>
-                        <NavLink to='/login' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Login</NavLink>
-                        <NavLink to='/book' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Book</NavLink>
+                        {/* <NavLink to='/login' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Login</NavLink> */}
+                        
                         {
                             user ?
                                 <>
@@ -30,8 +30,10 @@ const Header = () => {
                                     <button onClick={handleLogOut} className="btn btn-sm">Log out</button>
                                 </>
                                 :
-                                <button className="btn btn-sm">Login</button>
+                            //    <Link to='/login'> <button className="btn btn-sm">Login</button></Link>
+                            <NavLink to='/login' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Login</NavLink>
                         }
+                        <NavLink to='/book' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Book</NavLink>
                     </div>
                 </div>
                 <div className='h-full flex flex-col items-center justify-center'>

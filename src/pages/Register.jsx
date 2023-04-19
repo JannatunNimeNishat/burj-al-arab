@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Register = () => {
     const {signUp} = useContext(AuthContext);
-
+    const navigate = useNavigate()
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const handleRegister = (event) => {
@@ -32,6 +32,8 @@ const Register = () => {
         signUp(email,password)
         .then(result =>{
             setSuccess('successfully signed Up')
+            form.reset()
+            navigate('/')
         })
         .catch(error=>{
             setError(error.message)

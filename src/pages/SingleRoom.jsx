@@ -5,7 +5,7 @@ import { BiMaleFemale, BiDollar } from "react-icons/bi";
 const SingleRoom = () => {
     const singleRoomData = useLoaderData()
     const { id, title, description, img, num_of_bed, people, cost } = singleRoomData;
-    console.log(singleRoomData);
+    // console.log(singleRoomData);
     return (
         <div className='my-container mt-5 grid grid-cols-2 gap-5 mb-3'>
             <img className='rounded-lg' src={img} alt="" />
