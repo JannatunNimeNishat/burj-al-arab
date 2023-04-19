@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Register = () => {
+    const {signUp} = useContext(AuthContext);
+
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const handleRegister = (event) => {
@@ -25,6 +28,14 @@ const Register = () => {
            setError('must need 2 digit');
             return;
         }
+
+        signUp(email,password)
+        .then(result =>{
+            setSuccess('successfully signed Up')
+        })
+        .catch(error=>{
+            setError(error)
+        })
 
     }
     return (
