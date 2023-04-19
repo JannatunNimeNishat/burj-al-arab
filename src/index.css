@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.active{
+ @apply text-orange-500
+}
+
+.default{
+    @apply text-white
+}
+
+.my-container{
+    @apply max-w-7xl mx-auto;
+}
