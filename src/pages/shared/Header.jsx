@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 //
 import bgImg from '../../assets/burg-al-arab.jpg'
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 const Header = () => {
+    const { user,logOut } = useContext(AuthContext);
+    const handleLogOut = ()=>{
+        logOut()
+        .then(result=>{
+            console.log('success fully logout');
+        })
+        .catch(error=>{
+            console.log(error.message);
+        })
+    }
     return (
         <div className={`bg-[url('${bgImg}')]  h-[40vh] bg-cover bg-center`}>
             <div className='w-full h-full backdrop-brightness-50 text-white pt-8'>
@@ -12,6 +23,15 @@ const Header = () => {
                         <NavLink to='/' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Home</NavLink>
                         <NavLink to='/login' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Login</NavLink>
                         <NavLink to='/book' className={({ isActive }) => isActive ? 'active' : 'default hover:text-orange-600'} >Book</NavLink>
+                        {
+                            user ?
+                                <>
+                                    <p>{user.email}</p>
+                                    <button onClick={handleLogOut} className="btn btn-sm">Log out</button>
+                                </>
+                                :
+                                <button className="btn btn-sm">Login</button>
+                        }
                     </div>
                 </div>
                 <div className='h-full flex flex-col items-center justify-center'>
